@@ -2,15 +2,13 @@ require("dotenv").config();
 const { WakaTimeClient, RANGE } = require("wakatime-client");
 const Octokit = require("@octokit/rest");
 
-const {
-  GIST_ID: gistId,
-  GH_TOKEN: githubToken,
-  WAKATIME_API_KEY: wakatimeApiKey
-} = process.env;
+const GIST_ID = ''
+const GH_TOKEN = ''
+const WAKATIME_API_KEY = ''
 
-const wakatime = new WakaTimeClient(wakatimeApiKey);
+const wakatime = new WakaTimeClient(WAKATIME_API_KEY);
 
-const octokit = new Octokit({ auth: `token ${githubToken}` });
+const octokit = new Octokit({ auth: `token ${GH_TOKEN}` });
 
 async function main() {
   const stats = await wakatime.getMyStats({ range: RANGE.LAST_7_DAYS });
@@ -20,7 +18,7 @@ async function main() {
 async function updateGist(stats) {
   let gist;
   try {
-    gist = await octokit.gists.get({ gist_id: gistId });
+    gist = await octokit.gists.get({ gist_id: GIST_ID });
   } catch (error) {
     console.error(`Unable to get gist\n${error}`);
   }

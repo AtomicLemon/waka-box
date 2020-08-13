@@ -24,7 +24,7 @@ async function updateGist(stats) {
   }
 
   const lines = [];
-  for (let i = 0; i < Math.min(stats.data.languages.length, 5); i++) {
+  for (let i = 0; i < Math.min(stats.data.languages.length, 7); i++) {
     const data = stats.data.languages[i];
     const { name, percent, text: time } = data;
 
@@ -47,7 +47,7 @@ async function updateGist(stats) {
       gist_id: gistId,
       files: {
         [filename]: {
-          filename: `📊 Weekly development breakdown`,
+          filename: `📊 Fortnightly development breakdown`,
           content: lines.join("\n")
         }
       }
